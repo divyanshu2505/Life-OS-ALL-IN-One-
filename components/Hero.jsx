@@ -47,8 +47,8 @@ export default function Hero() {
           <Link href="/portfolio" className="relative w-64 h-64 md:w-96 md:h-96 mx-auto hover:scale-105 transition-transform duration-500 block group">
             <div className="absolute inset-0 bg-cyan-500/20 blur-2xl rounded-3xl group-hover:bg-cyan-500/40 transition-colors"></div>
             <img 
-              src="/amazon-clone.png" 
-              alt="Amazon Clone Project" 
+              src="/lifeos-preview.png" 
+              alt="Life-OS Preview" 
               className="w-full h-full object-contain rounded-xl drop-shadow-[0_0_15px_rgba(0,255,255,0.4)] relative z-10"
               onError={(e) => {
                 e.target.src = "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800";
