@@ -23,17 +23,22 @@ export default function Hero() {
           className="mb-8 relative w-full flex justify-center"
         >
           {/* Red Landing Page Image in Blue Theme */}
-          <Link href="/portfolio" className="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,150,255,0.3)] group cursor-pointer border border-cyan-500/20 hover:border-cyan-500/50 transition-colors block">
+          <Link href="/portfolio" className="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,150,255,0.3)] group cursor-pointer border border-cyan-500/20 hover:border-cyan-500/50 transition-colors block bg-black/50 aspect-video flex items-center justify-center">
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
             
             <img 
               src="/lifeos-red.png" 
               alt="Life-OS Red Theme Preview" 
-              className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               onError={(e) => {
-                e.target.src = "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800";
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
               }}
             />
+            <div className="hidden absolute inset-0 flex-col items-center justify-center text-cyan-500/50 border border-dashed border-cyan-500/30 rounded-2xl">
+              <Sparkles className="w-12 h-12 mb-4 opacity-50 animate-pulse" />
+              <p className="font-mono text-sm uppercase tracking-widest">Waiting for lifeos-red.png</p>
+            </div>
           </Link>
         </motion.div>
 
