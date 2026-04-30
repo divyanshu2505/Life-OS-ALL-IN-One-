@@ -32,7 +32,7 @@ export default function Hero() {
               </div>
               <div>
                 <h3 className="text-2xl font-bold font-display text-white">Access Life-OS</h3>
-                <p className="text-cyan-400 text-sm tracking-widest uppercase mt-1">View Full Portfolio →</p>
+                <p className="text-cyan-400 text-sm tracking-widest uppercase mt-1">View Full Projects →</p>
               </div>
             </div>
           </Link>
@@ -63,7 +63,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center gap-4"
         >
           <Link href="/portfolio" className="glow-border px-8 py-4 bg-white text-black font-bold text-lg flex items-center gap-2 hover:bg-gray-200 transition-colors rounded-xl uppercase tracking-wider">
-            View Portfolio <ArrowRight className="w-5 h-5" />
+            View Projects <ArrowRight className="w-5 h-5" />
           </Link>
           <Link href="/login" className="px-8 py-4 bg-transparent border border-white/20 text-white font-bold text-lg flex items-center gap-2 hover:bg-white/10 transition-colors rounded-xl uppercase tracking-wider">
             Login
