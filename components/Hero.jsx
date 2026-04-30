@@ -43,18 +43,26 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-8 relative w-full flex justify-center"
         >
-          {/* Amazon Photo linked to Portfolio */}
-          <Link href="/portfolio" className="relative w-64 h-64 md:w-96 md:h-96 mx-auto hover:scale-105 transition-transform duration-500 block group">
-            <div className="absolute inset-0 bg-cyan-500/20 blur-2xl rounded-3xl group-hover:bg-cyan-500/40 transition-colors"></div>
-            <img 
-              src="/lifeos-preview.png" 
-              alt="Life-OS Preview" 
-              className="w-full h-full object-contain rounded-xl drop-shadow-[0_0_15px_rgba(0,255,255,0.4)] relative z-10"
-              onError={(e) => {
-                e.target.src = "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800";
-              }}
-            />
-          </Link>
+          {/* Mock Abstract Chrome Spikey Logo */}
+          <div className="relative w-64 h-64 md:w-96 md:h-96 mx-auto animate-float">
+            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+              <path 
+                d="M100 20 C120 50, 180 30, 150 80 C190 90, 160 120, 180 160 C130 140, 120 180, 100 150 C80 180, 70 140, 20 160 C40 120, 10 90, 50 80 C20 30, 80 50, 100 20 Z" 
+                fill="none" 
+                stroke="#fff" 
+                strokeWidth="2"
+                style={{ filter: "drop-shadow(0 0 10px rgba(0,255,255,0.5))" }}
+              />
+              <path 
+                d="M100 40 C110 60, 150 50, 130 80 C160 90, 140 110, 150 140 C120 120, 110 150, 100 130 C90 150, 80 120, 50 140 C60 110, 40 90, 70 80 C50 50, 90 60, 100 40 Z" 
+                fill="none" 
+                stroke="#aaa" 
+                strokeWidth="1"
+                strokeDasharray="4 4"
+              />
+            </svg>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+          </div>
         </motion.div>
 
         <motion.h1 
