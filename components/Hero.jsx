@@ -13,27 +13,6 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden perspective-[1000px]">
       
-      {/* Corner Texts */}
-      <div className="absolute top-24 left-8 kvs-text hidden md:block">
-        {'{'}PREMIUM DESIGN AND<br/>
-        DEVELOPMENT PARTNER,<br/>
-        DELIVERING EXCELLENCE{'}'}
-      </div>
-      <div className="absolute top-24 right-32 kvs-text hidden md:block">
-        {'{'}INDIA/<br/>
-        NEW DELHI{'}'}
-      </div>
-      <div className="absolute top-24 right-8 kvs-text text-cyan-400">
-        CONTACT
-      </div>
-      <div className="absolute bottom-8 left-8 kvs-text max-w-xs hidden md:block">
-        {'{'}EVERY SOLUTION IS CRAFTED WITH PURPOSE, ENSURING EXCEPTIONAL QUALITY AND RESULT{'}'}
-      </div>
-      <div className="absolute bottom-8 right-8 kvs-text text-right hidden md:block text-cyan-400">
-        CLICK TO BREAK<br/>
-        <span className="text-white opacity-50">28.5562° N, 77.1000° E</span>
-      </div>
-
       <motion.div 
         style={{ y, opacity }}
         className="relative z-10 flex flex-col items-center text-center px-4 w-full"
@@ -44,26 +23,19 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-8 relative w-full flex justify-center"
         >
-          {/* Mock Abstract Chrome Spikey Logo (Using CSS/SVG as placeholder for the generated one) */}
-          <div className="relative w-64 h-64 md:w-96 md:h-96 mx-auto animate-float">
-            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-              <path 
-                d="M100 20 C120 50, 180 30, 150 80 C190 90, 160 120, 180 160 C130 140, 120 180, 100 150 C80 180, 70 140, 20 160 C40 120, 10 90, 50 80 C20 30, 80 50, 100 20 Z" 
-                fill="none" 
-                stroke="#fff" 
-                strokeWidth="2"
-                style={{ filter: "drop-shadow(0 0 10px rgba(0,255,255,0.5))" }}
-              />
-              <path 
-                d="M100 40 C110 60, 150 50, 130 80 C160 90, 140 110, 150 140 C120 120, 110 150, 100 130 C90 150, 80 120, 50 140 C60 110, 40 90, 70 80 C50 50, 90 60, 100 40 Z" 
-                fill="none" 
-                stroke="#aaa" 
-                strokeWidth="1"
-                strokeDasharray="4 4"
-              />
-            </svg>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
-          </div>
+          {/* Portfolio Access Button replacing the SVG image */}
+          <Link href="/portfolio" className="relative group block">
+            <div className="absolute inset-0 bg-cyan-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-60 transition-opacity duration-500"></div>
+            <div className="relative glass-panel px-12 py-8 rounded-3xl border border-cyan-500/30 flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center shadow-neon animate-pulse-slow">
+                <Sparkles className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold font-display text-white">Access Life-OS</h3>
+                <p className="text-cyan-400 text-sm tracking-widest uppercase mt-1">View Full Portfolio →</p>
+              </div>
+            </div>
+          </Link>
         </motion.div>
 
         <motion.h1 
