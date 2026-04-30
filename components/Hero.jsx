@@ -22,24 +22,26 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-8 relative w-full flex justify-center"
         >
-          {/* Red Landing Page Image in Blue Theme */}
-          <Link href="/portfolio" className="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,150,255,0.3)] group cursor-pointer border border-cyan-500/20 hover:border-cyan-500/50 transition-colors block bg-black/50 aspect-video flex items-center justify-center">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
-            
-            <img 
-              src="/lifeos-red.png" 
-              alt="Life-OS Red Theme Preview" 
-              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
-            />
-            <div className="hidden absolute inset-0 flex-col items-center justify-center text-cyan-500/50 border border-dashed border-cyan-500/30 rounded-2xl">
-              <Sparkles className="w-12 h-12 mb-4 opacity-50 animate-pulse" />
-              <p className="font-mono text-sm uppercase tracking-widest">Waiting for lifeos-red.png</p>
-            </div>
-          </Link>
+          {/* Mock Abstract Chrome Spikey Logo */}
+          <div className="relative w-64 h-64 md:w-96 md:h-96 mx-auto animate-float">
+            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+              <path 
+                d="M100 20 C120 50, 180 30, 150 80 C190 90, 160 120, 180 160 C130 140, 120 180, 100 150 C80 180, 70 140, 20 160 C40 120, 10 90, 50 80 C20 30, 80 50, 100 20 Z" 
+                fill="none" 
+                stroke="#fff" 
+                strokeWidth="2"
+                style={{ filter: "drop-shadow(0 0 10px rgba(0,255,255,0.5))" }}
+              />
+              <path 
+                d="M100 40 C110 60, 150 50, 130 80 C160 90, 140 110, 150 140 C120 120, 110 150, 100 130 C90 150, 80 120, 50 140 C60 110, 40 90, 70 80 C50 50, 90 60, 100 40 Z" 
+                fill="none" 
+                stroke="#aaa" 
+                strokeWidth="1"
+                strokeDasharray="4 4"
+              />
+            </svg>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+          </div>
         </motion.div>
 
         <motion.h1 
