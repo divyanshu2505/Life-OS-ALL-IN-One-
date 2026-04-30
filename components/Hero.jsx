@@ -23,19 +23,26 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-8 relative w-full flex justify-center"
         >
-          {/* Portfolio Access Button replacing the SVG image */}
-          <Link href="/portfolio" className="relative group block">
-            <div className="absolute inset-0 bg-cyan-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-60 transition-opacity duration-500"></div>
-            <div className="relative glass-panel px-12 py-8 rounded-3xl border border-cyan-500/30 flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center shadow-neon animate-pulse-slow">
-                <Sparkles className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold font-display text-white">Access Life-OS</h3>
-                <p className="text-cyan-400 text-sm tracking-widest uppercase mt-1">View Full Projects →</p>
-              </div>
+          {/* Project Preview Image with Reddish Tint */}
+          <div className="relative w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(255,50,50,0.3)] group cursor-pointer border border-red-500/20 hover:border-red-500/50 transition-colors">
+            {/* Reddish overlay */}
+            <div className="absolute inset-0 bg-red-600/20 mix-blend-multiply group-hover:bg-red-600/10 transition-colors z-10 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+            
+            <img 
+              src="/project-preview.png" 
+              alt="Project Preview" 
+              className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+              onError={(e) => {
+                e.target.src = "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800";
+              }}
+            />
+            
+            <div className="absolute bottom-6 left-6 z-20">
+              <h3 className="text-2xl font-bold font-display text-white drop-shadow-md">E-Commerce Platform</h3>
+              <p className="text-red-400 text-sm tracking-widest uppercase mt-1 drop-shadow-md">View Live Project →</p>
             </div>
-          </Link>
+          </div>
         </motion.div>
 
         <motion.h1 
