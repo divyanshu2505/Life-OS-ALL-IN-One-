@@ -1,5 +1,6 @@
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "../context/auth-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
           fontFamily: "var(--font-inter)"
         }}
       >
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
