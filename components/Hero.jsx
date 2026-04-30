@@ -23,13 +23,13 @@ export default function Hero() {
         {'{'}INDIA/<br/>
         NEW DELHI{'}'}
       </div>
-      <div className="absolute top-24 right-8 kvs-text text-[#ff4500]">
+      <div className="absolute top-24 right-8 kvs-text text-cyan-400">
         CONTACT
       </div>
       <div className="absolute bottom-8 left-8 kvs-text max-w-xs hidden md:block">
         {'{'}EVERY SOLUTION IS CRAFTED WITH PURPOSE, ENSURING EXCEPTIONAL QUALITY AND RESULT{'}'}
       </div>
-      <div className="absolute bottom-8 right-8 kvs-text text-right hidden md:block text-[#ff4500]">
+      <div className="absolute bottom-8 right-8 kvs-text text-right hidden md:block text-cyan-400">
         CLICK TO BREAK<br/>
         <span className="text-white opacity-50">28.5562° N, 77.1000° E</span>
       </div>
@@ -52,7 +52,7 @@ export default function Hero() {
                 fill="none" 
                 stroke="#fff" 
                 strokeWidth="2"
-                style={{ filter: "drop-shadow(0 0 10px rgba(255,255,255,0.5))" }}
+                style={{ filter: "drop-shadow(0 0 10px rgba(0,255,255,0.5))" }}
               />
               <path 
                 d="M100 40 C110 60, 150 50, 130 80 C160 90, 140 110, 150 140 C120 120, 110 150, 100 130 C90 150, 80 120, 50 140 C60 110, 40 90, 70 80 C50 50, 90 60, 100 40 Z" 
@@ -72,7 +72,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-7xl font-display font-extrabold tracking-tight mb-6 leading-tight uppercase"
         >
-          LifeOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#ff4500]">System</span>
+          LifeOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-500">System</span>
         </motion.h1>
 
         <motion.p 
@@ -90,8 +90,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <Link href="/signup" className="glow-border px-8 py-4 bg-white text-black font-bold text-lg flex items-center gap-2 hover:bg-gray-200 transition-colors rounded-none uppercase tracking-wider">
-            Execute <ArrowRight className="w-5 h-5" />
+          <Link href="/portfolio" className="glow-border px-8 py-4 bg-white text-black font-bold text-lg flex items-center gap-2 hover:bg-gray-200 transition-colors rounded-xl uppercase tracking-wider">
+            View Portfolio <ArrowRight className="w-5 h-5" />
+          </Link>
+          <Link href="/login" className="px-8 py-4 bg-transparent border border-white/20 text-white font-bold text-lg flex items-center gap-2 hover:bg-white/10 transition-colors rounded-xl uppercase tracking-wider">
+            Login
           </Link>
         </motion.div>
       </motion.div>

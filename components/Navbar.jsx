@@ -26,7 +26,7 @@ export default function Navbar() {
           <Link href="/login" className="text-sm font-medium text-white hover:text-neon-pink transition-colors">
             Log in
           </Link>
-          <Link href="/signup" className="px-5 py-2 rounded-full bg-white text-black font-semibold text-sm hover:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+          <Link href="/login" className="px-5 py-2 rounded-full bg-white text-black font-semibold text-sm hover:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             Get Started
           </Link>
         </div>

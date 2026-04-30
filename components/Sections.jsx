@@ -7,21 +7,23 @@ import Link from 'next/link';
 
 export function Features() {
   const features = [
-    { icon: MessageSquare, title: "AI Chat Assistant", desc: "Your personal genius, available 24/7.", href: "/chat" },
-    { icon: TrendingUp, title: "AI Revenue Generator", desc: "Automate income streams smartly.", href: "/revenue" },
-    { icon: Video, title: "Video Summarizer", desc: "Get the gist of any video in seconds.", href: "/summarizer" },
-    { icon: BookOpen, title: "Book Generator", desc: "Create complete books from simple prompts.", href: "/book-generator" },
-    { icon: Compass, title: "Smart Navigation", desc: "Find anything across your digital life.", href: "/navigation" },
-    { icon: Layout, title: "Flight Tracking System", desc: "Real-time global flight radar and alerts.", href: "/flight-tracking" }
+    { icon: MessageSquare, title: "AI Chat Assistant", desc: "Your personal genius, available 24/7.", href: "/chat", color: "from-blue-500 to-cyan-400" },
+    { icon: TrendingUp, title: "AI Revenue Generator", desc: "Automate income streams smartly.", href: "/revenue", color: "from-purple-500 to-pink-500" },
+    { icon: Video, title: "Video Summarizer", desc: "Get the gist of any video in seconds.", href: "/summarizer", color: "from-green-400 to-emerald-600" },
+    { icon: BookOpen, title: "Book Generator", desc: "Create complete books from simple prompts.", href: "/book-generator", color: "from-yellow-400 to-orange-500" },
+    { icon: Compass, title: "Smart Navigation", desc: "Find anything across your digital life.", href: "/navigation", color: "from-red-500 to-rose-400" },
+    { icon: Layout, title: "Flight Tracking", desc: "Real-time global flight radar and alerts.", href: "/flight-tracking", color: "from-cyan-500 to-blue-600" }
   ];
 
   return (
     <section id="features" className="py-24 px-6 max-w-7xl mx-auto relative z-10">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Supercharge Your Life</h2>
-        <p className="text-xl text-gray-400">Everything you need, nothing you don't.</p>
+      <div className="text-center mb-20 relative">
+        <h2 className="text-5xl md:text-6xl font-display font-extrabold mb-6 tracking-tight">
+          Supercharge Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Life</span>
+        </h2>
+        <p className="text-xl text-gray-400 max-w-2xl mx-auto">Access a suite of next-generation AI tools designed to multiply your productivity and automate the boring stuff.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-[1000px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-[1000px]">
         {features.map((feat, i) => (
           <Link href={feat.href} key={i}>
             <motion.div
@@ -29,12 +31,25 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05, rotateX: 10, rotateY: -10 }}
-              className="glass-panel p-8 rounded-2xl glow-border cursor-pointer transition-transform transform-style-preserve-3d h-full block"
+              whileHover={{ scale: 1.03, translateY: -10 }}
+              className="relative group p-[1px] rounded-3xl overflow-hidden h-full block"
             >
-              <feat.icon className="w-10 h-10 text-primary mb-4" />
-              <h3 className="text-2xl font-display font-semibold mb-2">{feat.title}</h3>
-              <p className="text-gray-400">{feat.desc}</p>
+              {/* Animated Gradient Border */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${feat.color} opacity-30 group-hover:opacity-100 transition-opacity duration-500`}></div>
+              
+              {/* Card Content */}
+              <div className="relative h-full bg-[#0a0a0f]/90 backdrop-blur-xl p-8 rounded-3xl border border-white/5 flex flex-col items-start z-10">
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feat.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <feat.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-2xl font-display font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all">{feat.title}</h3>
+                <p className="text-gray-400 font-medium leading-relaxed">{feat.desc}</p>
+                
+                {/* Hover Arrow */}
+                <div className="mt-auto pt-6 flex items-center text-sm font-bold text-gray-500 group-hover:text-white transition-colors">
+                  Explore Module <span className="ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>
+                </div>
+              </div>
             </motion.div>
           </Link>
         ))}
