@@ -124,7 +124,7 @@ export default function Portfolio() {
       <section className="pt-40 pb-24 px-6 max-w-4xl mx-auto">
         <div className="mb-2 text-xs text-zinc-600 tracking-widest">INIT_SYSTEM --mode=terminal</div>
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-none mb-6 font-sans">
-          <TypeWriter text="LifeOS All-in-One" speed={80} />
+          <TypeWriter text="Life-OS" speed={80} />
         </h1>
         <div className="text-lg md:text-xl text-zinc-400 mb-4 font-sans">
           Python Developer <span className="text-zinc-700">·</span> AI Builder <span className="text-zinc-700">·</span> Full Stack Engineer
