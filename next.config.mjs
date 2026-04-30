@@ -11,7 +11,16 @@ const nextConfig = {
         hostname: "**"
       }
     ]
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/portfolio',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

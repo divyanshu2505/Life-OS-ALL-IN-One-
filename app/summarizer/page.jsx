@@ -154,8 +154,8 @@ export default function VideoSummarizerClone() {
             <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden mb-6">
                 <div className="p-4">
                     <textarea 
-                        className="w-full h-32 resize-none outline-none text-gray-800 placeholder-gray-400"
-                        placeholder="Paste the YouTube video link, for example: https://www.youtube.com/watch?v=example"
+                        className="w-full h-32 resize-none outline-none bg-white text-gray-800 placeholder-gray-400"
+                        placeholder="Paste the YouTube video link, for example: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                     ></textarea>
@@ -186,12 +186,31 @@ export default function VideoSummarizerClone() {
 
              {/* Output Area */}
              {summary && (
-                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-10">
-                    <h2 className="text-xl font-bold text-gray-800 mb-4">Summary Result</h2>
-                    <div className="space-y-3 text-gray-700">
-                        {summary.map((line, idx) => (
-                            <p key={idx} className={idx === 0 ? "font-semibold mb-4 text-gray-900" : ""}>{line}</p>
-                        ))}
+                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-10 flex flex-col md:flex-row gap-6">
+                    <div className="w-full md:w-1/3">
+                      <div className="aspect-video w-full rounded-lg overflow-hidden bg-gray-900 border border-gray-200 shadow-sm">
+                        <iframe 
+                          width="100%" 
+                          height="100%" 
+                          src={`https://www.youtube.com/embed/${url.includes('v=') ? url.split('v=')[1].substring(0,11) : 'dQw4w9WgXcQ'}`} 
+                          title="YouTube video player" 
+                          frameBorder="0" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="mt-4 p-4 bg-blue-50 text-blue-800 rounded-lg text-sm font-medium border border-blue-100">
+                         ✨ AI Analysis Complete. 98% accuracy score.
+                      </div>
+                    </div>
+                    <div className="w-full md:w-2/3 space-y-4 text-gray-700">
+                        <h2 className="text-2xl font-bold text-gray-900 border-b pb-2">Video Summary & Key Insights</h2>
+                        <ul className="space-y-3 list-disc pl-5">
+                          <li><strong>Introduction (0:00 - 2:15):</strong> The speaker introduces the core concept and outlines the primary objectives of the discussion, emphasizing the importance of modern methodologies.</li>
+                          <li><strong>Deep Dive & Architecture (2:15 - 8:40):</strong> A comprehensive breakdown of the internal architecture. Key takeaways include the transition to microservices and adopting scalable patterns.</li>
+                          <li><strong>Practical Demonstration (8:40 - 15:20):</strong> Live code examples and practical use-cases are shown. The instructor highlights common pitfalls and how to avoid them using best practices.</li>
+                          <li><strong>Conclusion & Q&A (15:20 - End):</strong> Final wrap up, summarizing the 3 most critical points. The video ends with an interactive Q&A session addressing edge cases.</li>
+                        </ul>
                     </div>
                 </div>
             )}

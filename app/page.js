@@ -16,13 +16,13 @@ export default function Home() {
   return (
     <main className="relative bg-[#050505] text-white min-h-screen overflow-hidden font-sans">
       {/* KVS Style CRT & Orange Border overlays */}
-      <div className="fuzzy-orange-border"></div>
+      <div className="fuzzy-blue-border"></div>
       <div className="crt-overlay"></div>
 
       {/* Global Background Elements */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[150px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#ff4500]/10 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[150px]"></div>
       </div>
       
       {/* Content */}

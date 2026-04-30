@@ -32,15 +32,32 @@ export default function ChatAssistant() {
     
     if (debounceRef.current) clearTimeout(debounceRef.current);
     
-    const userMessage = input;
+    const userMessage = input.trim();
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setInput('');
     setIsTyping(true);
 
     debounceRef.current = setTimeout(() => {
-      setMessages(prev => [...prev, { role: 'assistant', content: "This is a simulated AI response. Optimized with Debounce and Memoization!" }]);
+      let aiResponse = "I'm a local AI assistant. I can help you code, plan your day, or summarize content. What exactly would you like to explore?";
+      const lower = userMessage.toLowerCase();
+      
+      if (lower.includes("hello") || lower.includes("hi") || lower.includes("hey")) {
+        aiResponse = "Hello there! How can I assist you with your projects today?";
+      } else if (lower.includes("code") || lower.includes("react") || lower.includes("nextjs") || lower.includes("bug")) {
+        aiResponse = "I'd love to help with your code! Please share the snippet or describe the bug you're encountering, and we can debug it together.";
+      } else if (lower.includes("who are you") || lower.includes("what are you")) {
+        aiResponse = "I am LifeOS AI, an intelligent assistant created to boost your productivity. I can write code, analyze data, and optimize your workflows.";
+      } else if (lower.includes("weather") || lower.includes("time")) {
+        aiResponse = "I don't have access to real-time external APIs in this demo mode, but normally I would fetch the live data for you right here!";
+      } else if (lower.includes("joke") || lower.includes("funny")) {
+        aiResponse = "Why do programmers prefer dark mode? Because light attracts bugs! 🐛";
+      } else if (lower.length < 10) {
+        aiResponse = "Could you tell me a little more about that?";
+      }
+
+      setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
       setIsTyping(false);
-    }, 800); // Debounced mock API call
+    }, 1200); // Simulated AI thinking time
   }, [input, isTyping]);
 
   return (
