@@ -1,7 +1,7 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import { MessageSquare, TrendingUp, Video, BookOpen, Compass, Layout, Check, Sparkles, Server, Database, Cpu } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MessageSquare, TrendingUp, Video, BookOpen, Compass, Layout, Check, Sparkles, Server, Database, Cpu, Ship, Briefcase, Dumbbell, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import Link from 'next/link';
 
@@ -12,8 +12,51 @@ export function Features() {
     { icon: Video, title: "Video Summarizer", desc: "Get the gist of any video in seconds.", href: "/summarizer", color: "from-green-400 to-emerald-600" },
     { icon: BookOpen, title: "Book Generator", desc: "Create complete books from simple prompts.", href: "/book-generator", color: "from-yellow-400 to-orange-500" },
     { icon: Compass, title: "Smart Navigation", desc: "Find anything across your digital life.", href: "/navigation", color: "from-red-500 to-rose-400" },
-    { icon: Layout, title: "Flight Tracking", desc: "Real-time global flight radar and alerts.", href: "/flight-tracking", color: "from-cyan-500 to-blue-600" }
+    { icon: Layout, title: "Flight Tracking", desc: "Real-time global flight radar and alerts.", href: "/flight-tracking", color: "from-cyan-500 to-blue-600" },
+    { icon: Ship, title: "Where Is My Cargo", desc: "AI-powered logistics tracking & supply chain intelligence.", href: "https://where-is-my-cargo.vercel.app", color: "from-amber-500 to-orange-600", tags: ["Logistics", "AI Tracking", "Supply Chain"], external: true },
+    { icon: Briefcase, title: "AI Jobs Board", desc: "Curated tech jobs from Zerodha, Google, Razorpay, CRED & top startups.", href: "https://where-is-my-cargo.vercel.app/jobs", color: "from-violet-500 to-fuchsia-500", tags: ["Jobs", "Careers", "AI Hiring"], external: true },
+    { icon: Dumbbell, title: "AI Gym & Fitness", desc: "AI-powered workout planner, calorie tracker & diet coach.", href: "#", color: "from-lime-400 to-emerald-500", tags: ["Fitness AI", "Health", "Workout"] }
   ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Responsive: 1 card mobile, 2 tablet, 3 desktop
+  const getVisibleCount = () => {
+    if (typeof window === 'undefined') return 3;
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 1024) return 2;
+    return 3;
+  };
+
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => setVisibleCount(getVisibleCount());
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const totalSlides = Math.ceil(features.length / visibleCount);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide(prev => (prev + 1) % totalSlides);
+  }, [totalSlides]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide(prev => (prev - 1 + totalSlides) % totalSlides);
+  }, [totalSlides]);
+
+  // Auto-slide
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(nextSlide, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused, nextSlide]);
+
+  const startIdx = currentSlide * visibleCount;
+  const visibleFeatures = features.slice(startIdx, startIdx + visibleCount);
 
   return (
     <section id="features" className="py-24 px-6 max-w-7xl mx-auto relative z-10">
@@ -23,36 +66,115 @@ export function Features() {
         </h2>
         <p className="text-xl text-gray-400 max-w-2xl mx-auto">Access a suite of next-generation AI tools designed to multiply your productivity and automate the boring stuff.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-[1000px]">
-        {features.map((feat, i) => (
-          <Link href={feat.href} key={i}>
+
+      {/* Carousel Container */}
+      <div
+        className="relative"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-20 w-12 h-12 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-20 w-12 h-12 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        {/* Cards */}
+        <div className="overflow-hidden px-2">
+          <AnimatePresence mode="wait">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.03, translateY: -10 }}
-              className="relative group p-[1px] rounded-3xl overflow-hidden h-full block"
+              key={currentSlide}
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -80 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className={`grid gap-8 ${visibleCount === 1 ? 'grid-cols-1' : visibleCount === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}
             >
-              {/* Animated Gradient Border */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${feat.color} opacity-30 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              
-              {/* Card Content */}
-              <div className="relative h-full bg-[#0a0a0f]/90 backdrop-blur-xl p-8 rounded-3xl border border-white/5 flex flex-col items-start z-10">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feat.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  <feat.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-display font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all">{feat.title}</h3>
-                <p className="text-gray-400 font-medium leading-relaxed">{feat.desc}</p>
-                
-                {/* Hover Arrow */}
-                <div className="mt-auto pt-6 flex items-center text-sm font-bold text-gray-500 group-hover:text-white transition-colors">
-                  Explore Module <span className="ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>
-                </div>
-              </div>
+              {visibleFeatures.map((feat, i) => {
+                const globalIdx = startIdx + i;
+                return (
+                  <Link href={feat.href} key={globalIdx} {...(feat.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      whileHover={{ scale: 1.03, translateY: -10 }}
+                      className="relative group p-[1px] rounded-3xl overflow-hidden h-full block"
+                    >
+                      {/* Animated Gradient Border */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${feat.color} opacity-30 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
+                      {/* Glowing Pulse Ring for premium cards */}
+                      {globalIdx >= 6 && (
+                        <div className={`absolute inset-0 bg-gradient-to-br ${feat.color} opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-opacity duration-700`}></div>
+                      )}
+
+                      {/* Card Content */}
+                      <div className="relative h-full bg-[#0a0a0f]/90 backdrop-blur-xl p-8 rounded-3xl border border-white/5 flex flex-col items-start z-10 min-h-[320px]">
+                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feat.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300 ${globalIdx >= 6 ? 'animate-glow' : ''}`}>
+                          <feat.icon className="w-7 h-7 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-display font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all">{feat.title}</h3>
+                        <p className="text-gray-400 font-medium leading-relaxed">{feat.desc}</p>
+
+                        {/* Tags */}
+                        {feat.tags && (
+                          <div className="flex flex-wrap gap-2 mt-4">
+                            {feat.tags.map(tag => (
+                              <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-gray-500 group-hover:border-white/20 group-hover:text-gray-400 transition-all">{tag}</span>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Hover Arrow */}
+                        <div className="mt-auto pt-6 flex items-center text-sm font-bold text-gray-500 group-hover:text-white transition-colors">
+                          {feat.external ? 'Open Platform' : 'Explore Module'} <span className="ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </Link>
+                );
+              })}
             </motion.div>
-          </Link>
-        ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Dot Indicators */}
+        <div className="flex items-center justify-center gap-2 mt-10">
+          {Array.from({ length: totalSlides }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`h-2 rounded-full transition-all duration-500 ${
+                i === currentSlide
+                  ? 'w-8 bg-gradient-to-r from-cyan-400 to-blue-600'
+                  : 'w-2 bg-white/20 hover:bg-white/40'
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Progress Bar */}
+        <div className="mt-4 max-w-xs mx-auto h-[2px] bg-white/5 rounded-full overflow-hidden">
+          <motion.div
+            key={`progress-${currentSlide}-${isPaused}`}
+            className="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full"
+            initial={{ width: "0%" }}
+            animate={{ width: isPaused ? `${((currentSlide + 1) / totalSlides) * 100}%` : "100%" }}
+            transition={{ duration: isPaused ? 0 : 4, ease: "linear" }}
+          />
+        </div>
       </div>
     </section>
   );

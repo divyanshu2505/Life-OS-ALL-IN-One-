@@ -1,7 +1,8 @@
 {
-  "/portfolio/page": "app/portfolio/page.js",
-  "/chat/page": "app/chat/page.js",
   "/page": "app/page.js",
-  "/revenue/page": "app/revenue/page.js",
-  "/summarizer/page": "app/summarizer/page.js"
+  "/portfolio/page": "app/portfolio/page.js",
+  "/flight-tracking/page": "app/flight-tracking/page.js",
+  "/job-portal/page": "app/job-portal/page.js",
+  "/chat/page": "app/chat/page.js",
+  "/navigation/page": "app/navigation/page.js"
 }

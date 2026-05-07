@@ -20,12 +20,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${outfit.variable} bg-background font-sans text-white overflow-x-hidden`}
         style={{
           fontFamily: "var(--font-inter)"
         }}
+        suppressHydrationWarning
       >
         <AuthProvider>
           {children}

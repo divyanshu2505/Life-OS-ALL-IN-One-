@@ -20,6 +20,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
           <a href="#features" className="hover:text-white transition-colors">Features</a>
           <a href="#solution" className="hover:text-white transition-colors">Platform</a>
+          <Link href="/job-portal" className="hover:text-white transition-colors text-cyan-400">Jobs</Link>
           <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
         </div>
         <div className="flex items-center gap-4">

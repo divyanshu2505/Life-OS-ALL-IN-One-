@@ -71,46 +71,78 @@ export default function ProblemSolution() {
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="glass-panel border border-white/10 rounded-2xl p-4 shadow-neon overflow-hidden"
             >
-              <div className="w-full h-[400px] rounded-xl bg-[#e3e6e6] border border-white/5 flex flex-col overflow-hidden relative">
-                {/* Amazon-like Top Nav */}
-                <div className="bg-[#131921] px-4 py-2 flex items-center gap-4 text-white text-sm">
-                  <div className="font-bold text-lg tracking-tight">amazon<span className="text-[#ff9900]">.in</span></div>
-                  <div className="hidden md:flex flex-col text-xs leading-tight">
-                    <span className="text-gray-300">Delivering to</span>
-                    <span className="font-bold">New Delhi 110001</span>
+              <div className="w-full h-[400px] rounded-xl bg-[#0a0a12] border border-white/5 flex flex-col overflow-hidden relative">
+                {/* LifeOS Top Nav */}
+                <div className="bg-[#0d0d18] px-4 py-2.5 flex items-center gap-4 text-white text-sm border-b border-white/5">
+                  <div className="font-bold text-lg tracking-tight flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center text-[10px]">⚡</span>
+                    <span>LifeOS<span className="text-purple-400"> AI</span></span>
                   </div>
-                  <div className="flex-1 flex rounded overflow-hidden h-8">
-                    <select className="bg-[#f3f3f3] text-black text-xs px-2 border-none outline-none hidden md:block w-16"><option>All</option></select>
-                    <input type="text" className="flex-1 px-2 text-black outline-none" placeholder="Search Amazon.in" />
-                    <button className="bg-[#febd69] px-3 flex items-center justify-center text-black">🔍</button>
+                  <div className="flex-1 flex rounded-lg overflow-hidden h-7 bg-white/5 border border-white/10 ml-4">
+                    <input type="text" className="flex-1 px-3 bg-transparent text-white/60 outline-none text-xs" placeholder="Search modules..." readOnly />
+                    <div className="px-2 flex items-center text-white/30 text-xs">⌘K</div>
                   </div>
-                  <div className="font-bold">Cart <span className="text-[#ff9900]">0</span></div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-400 text-[10px]">● Online</span>
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-[10px] font-bold">D</div>
+                  </div>
                 </div>
-                {/* Secondary Nav */}
-                <div className="bg-[#232f3e] px-4 py-1 flex items-center gap-4 text-white text-xs font-semibold">
-                  <span>☰ All</span>
-                  <span>Fresh</span>
-                  <span>Amazon miniTV</span>
-                  <span>Sell</span>
-                  <span>Best Sellers</span>
-                  <span>Mobiles</span>
-                  <span>Customer Service</span>
-                </div>
-                {/* Main Content Area */}
-                <div className="flex-1 p-4 relative overflow-hidden flex flex-col gap-4">
-                  {/* Fake Banner */}
-                  <div className="w-full h-24 bg-gradient-to-r from-blue-900 to-cyan-500 rounded flex items-center justify-center text-white text-xl font-bold italic shadow-inner">
-                    Great Indian Festival - Live Now!
-                  </div>
-                  {/* Grid of Product Cards */}
-                  <div className="grid grid-cols-3 md:grid-cols-4 gap-4 flex-1">
-                    {[1, 2, 3, 4].map((item) => (
-                      <div key={item} className="bg-white p-2 rounded shadow-sm flex flex-col">
-                        <div className="font-bold text-black text-xs mb-1">Up to 70% off</div>
-                        <div className="flex-1 bg-gray-200 rounded animate-pulse"></div>
-                        <div className="text-blue-600 text-[10px] mt-1 hover:underline cursor-pointer">Shop now</div>
+                {/* Dashboard Content */}
+                <div className="flex-1 p-3 relative overflow-hidden flex flex-col gap-3">
+                  {/* Stats Row */}
+                  <div className="grid grid-cols-4 gap-2">
+                    {[
+                      { icon: '🤖', val: '24', label: 'AI Chats', change: '+12%', color: 'from-purple-500/20 to-purple-500/5' },
+                      { icon: '💰', val: '$340', label: 'Earnings', change: '+8 new', color: 'from-green-500/20 to-green-500/5' },
+                      { icon: '🎥', val: '7', label: 'Videos', change: '3hrs saved', color: 'from-cyan-500/20 to-cyan-500/5' },
+                      { icon: '📚', val: '3', label: 'Books', change: '+2 this wk', color: 'from-pink-500/20 to-pink-500/5' },
+                    ].map((s, i) => (
+                      <div key={i} className={`bg-gradient-to-br ${s.color} rounded-lg p-2 border border-white/5`}>
+                        <div className="text-sm mb-0.5">{s.icon}</div>
+                        <div className="text-white font-bold text-sm">{s.val}</div>
+                        <div className="text-white/40 text-[9px]">{s.label}</div>
+                        <div className="text-green-400 text-[8px] mt-0.5">↑ {s.change}</div>
                       </div>
                     ))}
+                  </div>
+                  {/* Module Cards */}
+                  <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+                    {['💬 Ask AI', '💡 Earn', '⚡ Video', '📖 Book', '🗺️ Navigate', '🚀 Jobs'].map((m, i) => (
+                      <div key={i} className="bg-white/5 rounded-lg p-2 text-center border border-white/5 hover:border-purple-500/30 transition-colors cursor-pointer">
+                        <div className="text-xs">{m.split(' ')[0]}</div>
+                        <div className="text-[9px] text-white/50 mt-0.5">{m.split(' ').slice(1).join(' ')}</div>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Activity & Progress */}
+                  <div className="grid grid-cols-2 gap-2 flex-1">
+                    <div className="bg-white/[0.03] rounded-lg p-2 border border-white/5">
+                      <div className="text-[10px] text-white/60 font-semibold mb-1.5">📊 Weekly Progress</div>
+                      {['AI Chat', 'Earning', 'Videos', 'Books'].map((l, i) => (
+                        <div key={i} className="mb-1">
+                          <div className="flex justify-between text-[8px] text-white/40 mb-0.5"><span>{l}</span><span>{[75,45,60,30][i]}%</span></div>
+                          <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full" style={{ width: `${[75,45,60,30][i]}%` }}></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="bg-white/[0.03] rounded-lg p-2 border border-white/5">
+                      <div className="text-[10px] text-white/60 font-semibold mb-1.5">🕐 Recent Activity</div>
+                      {[
+                        { icon: '🤖', text: 'AI Chat — Freelancing tips', time: '2m ago' },
+                        { icon: '💰', text: 'Earned: Content Writing', time: '1h ago' },
+                        { icon: '🎥', text: 'Summarized: React crash course', time: '3h ago' },
+                      ].map((a, i) => (
+                        <div key={i} className="flex items-center gap-1.5 mb-1.5">
+                          <span className="text-xs">{a.icon}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-[9px] text-white/70 truncate">{a.text}</div>
+                            <div className="text-[7px] text-white/30">{a.time}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

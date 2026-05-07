@@ -51,6 +51,32 @@ const PROJECTS = [
     stack: ["Next.js", "OpenStreetMap", "Lucide Icons", "Tailwind CSS"],
     href: "/flight-tracking",
   },
+  {
+    date: "May 2025",
+    name: "Where Is My Cargo",
+    role: "Full Stack Developer",
+    desc: "Built a cinematic, Steam-inspired cargo logistics tracking platform with real-time Indian freight rail mapping, AI-powered route optimization, and a premium dark dashboard UI.",
+    stack: ["Next.js", "Leaflet.js", "GSAP", "Framer Motion", "Vercel"],
+    href: "https://where-is-my-cargo.vercel.app",
+    external: true,
+  },
+  {
+    date: "May 2025",
+    name: "AI Jobs Board",
+    role: "Full Stack Developer",
+    desc: "Built a curated AI-powered tech jobs board featuring openings from top Indian startups like Zerodha, Razorpay, CRED, Google India & more — with smart filtering by role, mode, and type.",
+    stack: ["React", "GSAP", "Vite", "Framer Motion", "Vercel"],
+    href: "https://where-is-my-cargo.vercel.app/jobs",
+    external: true,
+  },
+  {
+    date: "May 2025",
+    name: "AI Gym & Fitness Workspace",
+    role: "AI Developer",
+    desc: "Designed an AI-powered fitness assistant with workout planning, calorie tracking, diet suggestions, and an interactive AI coach — featuring a cyberpunk-inspired neon UI with animated progress visuals.",
+    stack: ["Next.js", "Python", "Ollama", "Chart.js", "Framer Motion"],
+    href: "#",
+  },
 ];
 
 const CAPABILITIES = [
@@ -145,12 +171,11 @@ export default function Portfolio() {
           <span className="text-cyan-400">➜</span>
           <span className="text-zinc-500 text-xs">SELECTED_WORK</span>
         </div>
-        <div className="text-zinc-700 text-xs mb-10">--limit=6</div>
+        <div className="text-zinc-700 text-xs mb-10">--limit=9</div>
 
         <div className="space-y-10">
           {PROJECTS.map((p, i) => (
             <div key={i} className="group border-l-2 border-zinc-800 hover:border-cyan-500 pl-6 transition-colors duration-300">
-              <div className="text-xs text-zinc-600 mb-1">[{p.date}]</div>
               <div className="flex items-start justify-between flex-wrap gap-2 mb-1">
                 <h3 className="text-lg font-bold font-sans group-hover:text-cyan-400 transition-colors">{p.name}</h3>
                 <span className="text-xs text-zinc-500 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded">{p.role}</span>
@@ -161,8 +186,8 @@ export default function Portfolio() {
                   <span key={s} className="text-[10px] border border-zinc-800 text-zinc-500 px-2 py-0.5 rounded hover:border-cyan-500/50 hover:text-cyan-400 transition-colors">{s}</span>
                 ))}
               </div>
-              <Link href={p.href} className="text-[10px] text-zinc-600 hover:text-cyan-400 transition-colors underline underline-offset-2">
-                view_project →
+              <Link href={p.href} {...(p.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-[10px] text-zinc-600 hover:text-cyan-400 transition-colors underline underline-offset-2">
+                {p.external ? 'open_platform' : 'view_project'} →
               </Link>
             </div>
           ))}
